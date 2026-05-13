@@ -1,0 +1,8 @@
+﻿
+FullName                                                                     
+--------                                                                     
+C:\Users\cnito\Documents\GitHub\Starlink-Exchange\ios\App\App.xcodeproj      
+C:\Users\cnito\Documents\GitHub\Starlink-Exchange\ios\App\App.xcworkspace    
+C:\Users\cnito\Documents\GitHub\Starlink-Exchange\ios\App\Pods\Pods.xcodeproj
+
+
