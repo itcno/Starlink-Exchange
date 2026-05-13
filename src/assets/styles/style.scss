@@ -1,0 +1,90 @@
+/* src/assets/styles/style.scss */
+
+/* 启动全屏：禁止整页滚动与底部预留区撑高（与 App.vue 中 class 联动） */
+html.splash-no-scroll,
+html.splash-no-scroll body {
+  overflow: hidden !important;
+  overscroll-behavior: none;
+  touch-action: none;
+  height: 100%;
+  max-height: 100dvh;
+}
+
+html.splash-no-scroll body {
+  padding-bottom: 0 !important;
+}
+
+html.splash-no-scroll #app {
+  overflow: hidden !important;
+  height: 100dvh;
+  max-height: 100dvh;
+  min-height: 0;
+}
+
+/* 全局：与 App / 启动页深色一致，避免 iOS WebView 底部露白 */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  min-height: 100dvh;
+  font-family: "Arial", sans-serif;
+  background-color: #050a14;
+  overscroll-behavior: none;
+}
+
+/* 正确的内容居中法：水平居中，不要垂直居中 */
+#app {
+	width: 100%;
+	max-width: 525px; /* H5 宽度限制 */
+	min-width: 375px; /* H5 最小宽度限制 */
+	margin: 0 auto; /* 水平居中 */
+	min-height: 100vh;
+	min-height: 100dvh;
+	background-color: #050a14;
+	display: block; /* ❗ 移除 flex，禁止垂直居中 */
+}
+
+/* 真正容纳页面内容的区域 */
+.router-view {
+	width: 100%;
+	min-height: 100vh;
+	display: block;
+}
+
+/* 设置底部导航栏 */
+.van-tabbar {
+	left: 50% !important; /* 居中底部导航栏 */
+	transform: translateX(-50%); /* 精确居中 */
+	max-width: 525px; /* 最大宽度限制 */
+	min-width: 375px; /* 最小宽度限制 */
+	width: 100% !important; /* 自适应宽度 */
+	position: fixed !important; /* 固定在底部 */
+	height: clamp(62px, 12vw, 86px) !important; /* 高度随屏幕调整 */
+	z-index: 99999 !important;
+}
+
+/* 底部导航栏项目 */
+.van-tabbar-item {
+	font-size: clamp(11px, 2.8vw, 18px) !important; /* 文字随屏幕缩放 */
+}
+
+.van-tabbar-item .van-icon {
+	font-size: clamp(25px, 6vw, 35px) !important; /* 图标大小随屏幕调整 */
+}
+
+/* 选中项颜色 */
+.van-tabbar-item--active {
+	color: #f1c448 !important;
+}
+
+/* 底部：仅保留安全区；有 Tabbar 时再叠加预留（避免 Tabbar 注释掉仍出现大块白条） */
+body {
+	padding-bottom: max(0px, env(safe-area-inset-bottom, 0px));
+}
+
+body:has(.van-tabbar) {
+	padding-bottom: max(env(safe-area-inset-bottom, 0px), clamp(62px, 9vw, 86px));
+}
