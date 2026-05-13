@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.starlink.exchange" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>星链交易所</name>
+  <description>星链交易所 iOS 应用</description>
+  <author email="yushaocn@foxmail.com">Starlink Exchange Team</author>
+
+  <!-- iOS 平台配置 -->
+  <platform name="ios">
+    <preference name="deployment-target" value="14.0" />
+    <preference name="Orientation" value="portrait" />
+  </platform>
+
+  <!-- 应用图标与启动图（可根据需要补充） -->
+  <icon src="resources/ios/icon/icon.png" />
+  <splash src="resources/ios/splash/splash.png" />
+
+  <!-- 权限声明 -->
+  <allow-navigation href="*" />
+  <allow-intent href="*" />
+</widget>
