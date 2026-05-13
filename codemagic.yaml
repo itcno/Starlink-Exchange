@@ -1,0 +1,30 @@
+workflows:
+  ios-ipa-no-sign:
+    name: iOS IPA Build (No Signing)
+    environment:
+      vars:
+        XCODE_WORKSPACE: "ios/App/App.xcworkspace"   # 你的 workspace 路径
+        XCODE_SCHEME: "App"                         # 你的 scheme 名称
+    scripts:
+      - name: Install dependencies
+        script: |
+          cd ios/App
+          pod install
+      - name: Build archive without signing
+        script: |
+          xcodebuild \
+            -workspace "$XCODE_WORKSPACE" \
+            -scheme "$XCODE_SCHEME" \
+            -sdk iphoneos \
+            -configuration Release \
+            archive \
+            -archivePath $CM_BUILD_DIR/App.xcarchive \
+            CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+
+          xcodebuild \
+            -exportArchive \
+            -archivePath $CM_BUILD_DIR/App.xcarchive \
+            -exportOptionsPlist exportOptions.plist \
+            -exportPath $CM_BUILD_DIR/ipa
+    artifacts:
+      - ipa/*.ipa
